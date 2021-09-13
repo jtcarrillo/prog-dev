@@ -69,3 +69,7 @@ Searching is a common need in many applications. An effective search should find
 # Other Notes
 
  - Separating interface (what) from implementation (how) is an important aspect of design and provides a springboard for larger design choices. You want to consider similar restructurings every time you hit the refactoring step in TDD. 
+
+# References
+
+[Modern C++ Programming with Test-Driven Development](https://pragprog.com/titles/lotdd/modern-c-programming-with-test-driven-development/)
