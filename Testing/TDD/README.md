@@ -1,4 +1,4 @@
-# Test-Driven Development [1]
+# Test-Driven Development <cite>[Langer][1]</cite> 
 
 C++ remains one of the best choices for building high-performance solutions. One might think that the code quality on C++ systems should be high. Yet most C++ systems exhibit the same problems we all see time and time again, usually regardless of language. Like any language, C++ allows you to shoot yourself in the foot - but with C++ you sometimes don't realize you shot yourself until it's too late. 
 
