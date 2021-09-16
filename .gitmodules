@@ -1,0 +1,3 @@
+[submodule "matplotlib_cpp/extern/matplotlib-cpp"]
+	path = matplotlib_cpp/extern/matplotlib-cpp
+	url = https://github.com/Cryoris/matplotlib-cpp
