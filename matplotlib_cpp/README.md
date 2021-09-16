@@ -27,6 +27,15 @@ Matplotlib-cpp is a simple C++ plotting library. It is built to resemble the plo
 
 currently doesn't work
 
+# Installation
+
+- cd extern/
+- git submodule init/
+- git submodule update/
+- cmake -S . -B build
+- cmake --build build
+- cd build && example1
+
 
 
 # Knowns Issues
