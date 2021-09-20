@@ -36,4 +36,12 @@ jobs:
           cd Testing/TDD/ 
           cmake -S . -B build
           cmake --build build
+  test:
+    runs-on: ubuntu-latest
+      - uses: actions/checkout@v2
+      - name: Run a multi-line script
+        run: |
+          cd Testing/TDD/ 
+          cmake -S . -B build
+          cmake --build build
           cd build && ctest 
