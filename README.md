@@ -19,3 +19,9 @@ The current list of topics include:
  - [ ] Compilers
  - [ ] Debugging
  - [ ] Profiling 
+
+
+# Version History
+
+0.1 
+ * added matplotlib-cpp
