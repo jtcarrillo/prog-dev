@@ -31,6 +31,8 @@ At any given point, your complete set of tests declare the behaviors you intend 
 
 The cycle of TDD, once again in brief, is to write a small test, ensure it fails, get it to pass, review and clean up the design (including that of the tests), and ensure the test all still pass. You repeat the cycle throughout the day, keeping it short to maximize the feecback it gives you. Though repetitive, it's not mindless - at each point you have many things to think about. 
 
+A mantra surfaced in the early TDD days that says, "Test everything that can possibly break." This is a glib response to the oft-asked question, "What do I have to test?" Maybe the most important consideration is that we are test-driving, not testing. Using a testing technique, you would seek to exhaustively analyze the specification in question (and possibly the code) and devise tests that exhaustively cover the behavior. TDD is instead a technique for driving the design of the code. Your tests primarily serve the purpose of specifying the behavior of what you will build. The tests in TDD are almost a by-product of the process. They provide you with the necessary confidence to make subsequent changes to the code. The distinction between test-driving and testing may seem subtle. The important aspect is that TDD represents more of a sufficiency mentality. You write as many tests as you need to drive in the code necessary and no more. You write tests to describe the next behavior needed. If you know that the logic won't need to change any further, you stop writing tests. Of course, real experience provides the best determinant. Test-driving for confidence works great until you ship a defect. When you do, remind yourself to take smaller, safer steps. 
+
 ## Google Mock
 
 Not only do we want to look at production code for refactoring opportunities, we want to look at the tests, too. If multiple tests require the same line of code to create a test istance, we're not happy with such duplication. It adds up quickly and often turns into more complex duplication. It also clutters the tests, detracting from what's important for a reader to understand. 
@@ -41,6 +43,8 @@ It's common for related tests to need common code. Google Mock lets us define a 
  - TEST_F() is useful when you need access to objects and subroutines in the unit test. 
     - To code a custom fixture, we change the TEST macro invocation to TEST_F, with the F standing for "Fixture." If we forget to use TEST_F, any test code attempting to use fixture member errors will fail compilation. 
  - TEST_P() is useful when you want to write tests with a parameter
+ - ASSERT - fails fast, aborting the current function
+ - EXPECT - continues after the failure
 
  
 # Installing, Building, and Running
@@ -69,6 +73,7 @@ Searching is a common need in many applications. An effective search should find
 # Other Notes
 
  - Separating interface (what) from implementation (how) is an important aspect of design and provides a springboard for larger design choices. You want to consider similar restructurings every time you hit the refactoring step in TDD. 
+ - The rule of thumb for TDD is one assert per test. Its a good idea that promotes focusing on the behavior of the tests, instead of centering tests around functions. 
 
 # References
 
