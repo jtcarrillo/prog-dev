@@ -110,10 +110,10 @@ You can build with a variety of tools; make is usually the default. To see all t
  
  These are common CMake options to most packages:
   
- - DCMAKE_BUILD_TYPE= Pick from Release, RelWithDebInfo, Debug, or sometimes more.
- - DCMAKE_INSTALL_PREFIX= the location to install to. System install on UNIX would often be /usr/local (the default), user directories are often ~/.local, or you can pick a folder
- - DBUILD_SHARED_LIBS= You can set this ON or OFF to control the default for shared libraries 
- - DBUILD_TESTING = this is a common name for enabling tests, not all packages use it though, sometimes with good reason. 
+ - **DCMAKE_BUILD_TYPE=** Pick from Release, RelWithDebInfo, Debug, or sometimes more.
+ - **DCMAKE_INSTALL_PREFIX=** the location to install to. System install on UNIX would often be /usr/local (the default), user directories are often ~/.local, or you can pick a folder
+ - **DBUILD_SHARED_LIBS=** You can set this ON or OFF to control the default for shared libraries 
+ - **DBUILD_TESTING=** this is a common name for enabling tests, not all packages use it though, sometimes with good reason. 
  
  ## Debugging your CMake files
  
