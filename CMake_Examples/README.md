@@ -86,4 +86,58 @@ Selecting a compiler must be done on the first run in an empty directory.
 
 This sets the environment variables in bash for CC and CXX, and CMake will respect those variables. 
 
+## Picking a generator
+
+You can build with a variety of tools; make is usually the default. To see all the tools CMake knows about on your system, run 
+
+ - cmake --help
+ 
+ and you can pick with -G"My Tool" (quotes only needed if spaces are in the tool name). You should pick a tool on your first CMake call in a directory, just like the compiler. Feel free to have several build directories, like build/ and buildXcode. Note that makefiles will only run in parallel if you explicitly pass a number of threads, such as make -j2, while Ninja will automatically run in parallel. 
+ 
+ ## Verbose and partial builds
+ 
+ Not really CMake, but if you are using a command line tool like make, you can get verbose builds:
+ 
+ - VERBOSE=1 make
+ 
+ You can also build just a part of a build by specifying a target, such as the name of a library or executable you've defined in CMake and make will just build that target. 
+ 
+ ## Options
+ 
+ CMake has support for cached options. A Variable in CMake can be marked as "cached," which means it will be written to the cache (a file called CMakeCache.txt in the build directory) when it is encountered. You can preset (or change) the value of a cached option on the command line with -D. When CMake looks for a cached variable, it will use the existing value and will not overwrite it. 
+ 
+ ### Standard options
+ 
+ These are common CMake options to most packages:
+  
+ - DCMAKE_BUILD_TYPE= Pick from Release, RelWithDebInfo, Debug, or sometimes more.
+ - DCMAKE_INSTALL_PREFIX= the location to install to. System install on UNIX would often be /usr/local (the default), user directories are often ~/.local, or you can pick a folder
+ - DBUILD_SHARED_LIBS= You can set this ON or OFF to control the default for shared libraries 
+ - DBUILD_TESTING = this is a common name for enabling tests, not all packages use it though, sometimes with good reason. 
+ 
+ ## Debugging your CMake files
+ 
+Verbose output for the build was already mentioned, but you can also see verbose CMake configurre output too. The --trace option will print every line of CMake that is run. Since this is very verbose, CMake 3.7 added --trace-source="filename", which will print out every executed line of just the file you are interested in when it runs. If you select the name of the file you are interested in debugging (usually by selecting the parent directory when debugging a CMakeLists.txt, since all of those have the same name), you can just see the lines in that file. Very useful!
+
+# Do's and Don'ts
+
+## CMake Antipatterns
+
+ - **Do not use global functions:** This includes link_directories, include_libraries, and similar.
+ - **Don't add unneeded PUBLIC requirements:** You should avoid forcing something on users that is not required (-Wall). Make these PRIVATE instead. 
+ - **Don't GLOB files:** Make or another tool will not know if you add files without rerunning CMake. 
+ - **Link to built files directly:** Always link to targets if available. 
+ - **Never skip PUBLIC/PRIVATE when linking:** This causes all future linking to be keyword-less. 
+ 
+ ## CMake Patterns
+ 
+ - **Treak CMake as code:** It is code. It should be as clean and readable as all other code. 
+ - **Think in targets:** Your targets should represent concepts. Make an (IMPORTED) INTERFACE target for anything that should stay together and link to that. 
+ - **Export your interface:** You should be able to run from build or install. 
+ - **Write a Config.cmake file:** This is what a library author should do to support clients. 
+ - **Make ALIAS targets to keep usage consistent:** Using add_subdirectory and find_package should provide the same targets and namespaces. 
+ - **Combine common functionality into clearly documented functions or macros:** Functions are better usually. 
+ - **Use lowercase function names:** CMake functions and macros can be called lower or upper case. Always use lower case. Upper case is for variables. 
+ - **Use cmake_policy and/or range of versions:** Policies change for a reasonl Only piecemeal set OLD policies if you have to. 
+
 
