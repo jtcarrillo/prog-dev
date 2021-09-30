@@ -1,4 +1,4 @@
-# Introduction to Modern CMake
+# [Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/modern-cmake.pdf)
 
 Modern CMake = CMake 3.4+ (maybe even CMake 3.21+)
 
