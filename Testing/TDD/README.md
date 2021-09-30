@@ -33,6 +33,15 @@ The cycle of TDD, once again in brief, is to write a small test, ensure it fails
 
 A mantra surfaced in the early TDD days that says, "Test everything that can possibly break." This is a glib response to the oft-asked question, "What do I have to test?" Maybe the most important consideration is that we are test-driving, not testing. Using a testing technique, you would seek to exhaustively analyze the specification in question (and possibly the code) and devise tests that exhaustively cover the behavior. TDD is instead a technique for driving the design of the code. Your tests primarily serve the purpose of specifying the behavior of what you will build. The tests in TDD are almost a by-product of the process. They provide you with the necessary confidence to make subsequent changes to the code. The distinction between test-driving and testing may seem subtle. The important aspect is that TDD represents more of a sufficiency mentality. You write as many tests as you need to drive in the code necessary and no more. You write tests to describe the next behavior needed. If you know that the logic won't need to change any further, you stop writing tests. Of course, real experience provides the best determinant. Test-driving for confidence works great until you ship a defect. When you do, remind yourself to take smaller, safer steps. 
 
+"Should the system do A, or should it do B?" In the old days, we would have simply coded our choice and moved on. What we lost in doing so was immediate documentation on which choice we made. Somewhere, the solution for B was encoded in the midst of a lot of other code. Sure, we could analyze the codebase to determine what decisions were made, but often at excessive cost. We've all spent too many hours trying to determine how code behaves. In contrast, test-driving leaves behind a clear document. We waste no analysis time uncovering a choice made moons ago. 
+
+There is no one right way to code any solution. There are important solution characteristics:
+
+ - **It implements what the customer asked for.** If not, it's a bad solution, no matter what. The tests you build using TDD can help you understand whether your solution is in line with what the customer requested. Sufficient performance is one of those things your customer likely wants. Part of your job is to ensure you understand their specific performance needs, not introduce the costs of optimization when it's not needed. 
+ - **It works.** If a solution exhibits significant defects, it's bad, no matter how elegant. TDD helps ensure that the software we deliver behaves the way we expect. TDD is not a silver bullet. You'll still ship defects, and you still need many other forms of testing. However, TDD gives you opportunities to ship code with considerably fewer defects. 
+ - **It's readily understood.** Everyone wastes excessive time trying to understand poorly written code. Following TDD will provide you with safe opportunities to rename and restructure yoru code for better understanding. 
+ - **It's easily changed.** Usually, ease of change aligns with design quality. TDD allows you to make the continual tweaks necessary to keep design quality high. 
+
 ## Google Mock
 
 Not only do we want to look at production code for refactoring opportunities, we want to look at the tests, too. If multiple tests require the same line of code to create a test istance, we're not happy with such duplication. It adds up quickly and often turns into more complex duplication. It also clutters the tests, detracting from what's important for a reader to understand. 
@@ -66,7 +75,7 @@ Searching is a common need in many applications. An effective search should find
     * l : 4
     * m, n : 5
     * r : 6
- 3. If two adjacent letters encode to the same number, encoe them instead as a single number. Also, do so if two letters with the same number are separated by h or w (but code them twice if separated by a vowel). This rule applies to the first letter. 
+ 3. If two adjacent letters encode to the same number, encode them instead as a single number. Also, do so if two letters with the same number are separated by h or w (but code them twice if separated by a vowel). This rule applies to the first letter. 
  4. Stop when you have a letter and three digits. Zero-pad if needed. 
 
 
@@ -74,6 +83,11 @@ Searching is a common need in many applications. An effective search should find
 
  - Separating interface (what) from implementation (how) is an important aspect of design and provides a springboard for larger design choices. You want to consider similar restructurings every time you hit the refactoring step in TDD. 
  - The rule of thumb for TDD is one assert per test. Its a good idea that promotes focusing on the behavior of the tests, instead of centering tests around functions. 
+ - The single responsibility principle (SRP) states that each function should have one reason to change (Agile Software Development, Principles, Patterns and Practices). 
+
+ 
+ 
+# [Matchers References](https://google.github.io/googletest/reference/matchers.html)
 
 # References
 
