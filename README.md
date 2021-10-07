@@ -5,6 +5,7 @@ This repository contains introductions and tutorials for several areas in softwa
 The current list of topics include:
 
  - [x] Test Driven Development
+ - [x] CMake
  - [ ] Parallel Computing
  - [ ] Version Control
  - [ ] Issue Tracking
@@ -12,7 +13,6 @@ The current list of topics include:
  - [ ] Containerization
  - [ ] Unix Shell & Scripting
  - [ ] Programming Style Guides
- - [ ] CMake
  - [ ] Documentation
  - [ ] C++ Programming
  - [ ] Python Programming
