@@ -25,3 +25,7 @@ The current list of topics include:
 
 0.1 
  * added matplotlib-cpp
+0.2 (Pre-Release)
+ * added TDD Soundex Example
+0.3 (Pre-Release)
+ * added CMake examples
