@@ -1,11 +1,18 @@
-# Download the data
 import os
-datapath = os.path.join("datasets", "lifesat", "")
-
+import tarfile
 import urllib.request
+
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml2/master/"
-os.makedirs(datapath, exist_ok=True)
-for filename in ("oecd_bli_2015.csv", "gdp_per_capita.csv"):
-    print("Downloading", filename)
-    url = DOWNLOAD_ROOT + "datasets/lifesat/" + filename
-    urllib.request.urlretrieve(url, datapath + filename)
+HOUSING_PATH = os.path.join("datasets", "housing")
+HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
+
+def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
+    if not os.path.isdir(housing_path):
+        os.makedirs(housing_path)
+    tgz_path = os.path.join(housing_path, "housing.tgz")
+    urllib.request.urlretrieve(housing_url, tgz_path)
+    housing_tgz = tarfile.open(tgz_path)
+    housing_tgz.extractall(path=housing_path)
+    housing_tgz.close()
+
+fetch_housing_data()
