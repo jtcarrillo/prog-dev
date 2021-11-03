@@ -36,20 +36,25 @@ Secondly, some programming languages handle dynamic memory in a completely diffe
 
 Thirdly, some programming languages place all its objects in separate hap allocations, whereas C++ allows the programmer to place objects both on the stack and on the heap. In C++ it's also possible to create multiple objects in one single heap allocation. This can be huge performance gain for two reasons: objects can be created without always allocating dynamic memory, and multiple related objects can be placed adjacent to one another in memory. 
 
+## Non-performance-related C++ language features
+
+In some discussions about C++ versus other languages, it's concluded that C++ should only be used if performance is a major concern. Otherwise, it's said to just increase the complexity of the code base due to manual memory handling, which may result in memory leaks and hard-to-track bugs. This may have been true several C++ versions ago, but a modern C++ programmer relies on the provided containers and smart pointer types, which are part of the STL. 
+
 
 
 # Examples
 
 - [x] Abstractions
 - [x] Heap Allocations
+- [x] Value Semantics
 - [ ] Const Correctness
 - [ ] Exception Safety
 - [ ] References
 - [ ] Resource Acquisition
 - [ ] Strict Interfaces
-- [ ] Value Semantics
 
-## Abstractions (Abstractions.cpp)
+
+## Abstractions.cpp
 
 C++ and C are nowadays two completely different languages. Still, C++ is highly compatible with C and has inherited a lot of its syntax and idioms from C. 
 
@@ -62,7 +67,7 @@ C++ and C are nowadays two completely different languages. Still, C++ is highly 
 
 Basically, both version of num_hamlet() translate to roughly the same machine code, but the language feature of C++ makes it possible to let the libraries hide computer related terminology such as pointers.
 
-## Heap Allocation (Heap_Allocation.cpp)
+## Heap_Allocation.cpp
 
 This example demonstrates how C++ can minimize heap allocation by:
 
@@ -88,6 +93,14 @@ Key Differences:
 - Stack memory is allocated in a contiguous block whereas Heap memory is allocated in any random order. 
 - Stack doesn't require to de-allocate variables whereas in Heap de-allocation is needed. 
 - Stack allocation and deallocation are done by compiler instructions whereas Heap allocation and deallocation is done by the programmer. 
+
+## Value_Semantics.cpp
+
+C++ supports both value semantics and reference semantics. Value semantics lets us pass objects by value instead of just passing references to objects. In C++, value semantics is the default, which means that you pass an instance of a class or struct, it behaves in the same way as passing an int, float, or any other fundamental type. To use reference semantics, we need to explicitly use references or pointers. 
+
+In the example code, the C++ programmer states that the toppings are completely encapsulated by the Bagel class. Had the programmer intended the topping list to be shared among several bagels, it would have been declared as a pointer of some kind: std::shared_ptr, if the ownership is shared among several bagels, or a std::weak_ptr, if someone else owns the topping list and is supposed to modify it as the program executes. 
+
+In Java for example, objects references each other with shared ownership. Therefore, it's not possible to distinguish whether the topping list is intended to be shared among several bagels or not, or whether it is handled somewhere else or if it is, as in most cases, completely owned by the Bagel class. 
 
 # References
 

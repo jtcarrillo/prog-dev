@@ -19,11 +19,12 @@ add_executable(
   Examples
   Abstractions.cpp
   Heap_Allocations.cpp
+  Value_Semantics.cpp
 )
 target_link_libraries(
-  Assertions
+  Examples
   gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(Assertions)
+gtest_discover_tests(Examples)
